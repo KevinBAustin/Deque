@@ -13,18 +13,23 @@
 class deque{
  private:
   int** blockmap;
-  
+  int amount;
+  int mapsize=10;
+  const static int blocksize=20;
+  int firstblock;
+  int firstelement;
+  void resize();
  public:
   deque();
   ~deque();
-  void push_front{};
-  void push_back{};
-  void pop_front{};
-  void pop_back{};
+  void push_front(int num);
+  void push_back();
+  void pop_front();
+  void pop_back();
   int front();
   int back();
   bool empty();
   int size();
-  
+  int& operator[](unsigned int index);
 };
 #endif
