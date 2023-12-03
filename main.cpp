@@ -13,14 +13,23 @@
 
 using namespace std;
 
+
+/**
+ * Menu for user interaction
+ *
+ * @pre 
+ * @return int returns user choice
+ * @post 
+ * 
+ */
 int UIMenu();
 
 int main() {
-  int choice=11;
-  deque d;
+  int choice=11;//user choice
+  deque d;//custom deque class
   int data;
-  int fob;
-  int otto;
+  int fob;//Front or back choice for user
+  int otto;//How long to auto run input data
   
   while(choice!=0){
     choice=UIMenu();
