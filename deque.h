@@ -23,13 +23,14 @@ class deque{
   deque();
   ~deque();
   void push_front(int num);
-  void push_back();
+  void push_back(int num);
   void pop_front();
   void pop_back();
   int front();
   int back();
   bool empty();
   int size();
+  void autoenter(int num);
   int& operator[](unsigned int index);
 };
 #endif
