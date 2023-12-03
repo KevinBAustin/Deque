@@ -20,7 +20,7 @@ void deque::resize(){
   temp[0] = new int[blocksize];
 
   for (int i = 0; i < mapsize; i++){
-    temp[i+1] = blockmap[i];
+    temp[i] = blockmap[i];
   }
   temp[mapsize - 1] = new int[blocksize];
   temp[mapsize - 2] = new int[blocksize];
@@ -88,7 +88,7 @@ void deque::push_back(int num){
   }
     amount++;
 }
-
+/*
 void deque::pop_front(){
   if (firstblock == mapsize-1 && firstelement == blocksize - 1){
     blockmap[firstblock][firstelement] = 0;
@@ -107,9 +107,35 @@ void deque::pop_front(){
     }
   }
 }
+*/
+
+void deque::pop_front(){
+  if(empty()){
+    return;
+  }
+  blockmap[firstblock][firstelement]=0;
+  if(firstelement+1 == blocksize){
+    firstblock++;
+    firstelement=0;
+  }
+  else{
+    firstelement++;
+  }
+  amount--;
+}
 
 void deque::pop_back(){
-  
+  int row;
+  int col;
+  row=firstblock+((firstelement+amount)/blocksize);
+  col=(firstelement+amount)%blocksize;
+  if(empty()){
+    return;
+  }
+  else{
+    blockmap[row][col-1]=0;
+  }
+  amount--;
 }
 
 int deque::front(){
@@ -125,6 +151,12 @@ int deque::back(){
 }
 
 bool deque::empty(){
+  if(amount==0){
+    return 1;
+  }
+  else{
+    return 0;
+  }
 }
 
 int deque::size(){
@@ -136,5 +168,10 @@ int& deque::operator[](unsigned int index){
   int col;
   row = firstblock + ((firstelement + index)/blocksize);
   col = (firstelement + index) % blocksize;
-  return blockmap[row][col];
+}
+ 
+void deque::autoenter(int num){
+  for(int i=0; i<num; i++){
+    push_front(i);
+  }
 }

@@ -14,12 +14,14 @@
 
 using namespace std;
 
+int UIMenu();
+
 int main() {
   int num;
   ifstream inFile;
   string filename;
   deque d;
-
+  
   cout << "Enter file name: " << endl;
   cin >> filename;
 
@@ -33,34 +35,82 @@ int main() {
   }
   cout << endl << d[0] << endl;
   inFile.close();
-  
-  //d[5] = 7;
-  //cout << d[5] << endl;
-  /*
-  d.push_front(6);
-  cout << d[0] << endl;
-  d.push_back(7);
-  cout << d[0] << endl;
-  d.push_front(34);
-  cout << d[0] << endl;
-  d.push_back(234);
-  d.push_front(42);
-  d.pop_front();
-  d.push_back(9000);
-  d.push_back(9001);
-  //d.pop_front();
-  //d.pop_front();
-  cout << d[0] << " " << d[1] << " " << d[2] << " " << d[3] << " " << d[4] << " " << d[5] << " " << d[6] << " " <<  d[7] << endl << endl;
 
-  cout << d.front() << endl;
-  cout << d.back() << endl;
-  cout << d.size() << endl;
 
+
+  int choice=11;
+  int data;
+  int fob;
+  int otto;
   
-  d.push_front(6);
-  cout << d[0] << endl;
-  d.pop_front();
-  cout << d[0] << endl;
-  */
+  while(choice!=0){
+    choice=UIMenu();
+    if(choice==1){
+      char con='z';
+      while(con!='n'){
+	cout<<"What integer would you like to enter?"<<endl;
+	cin>>data;
+	cout<<"Put it at the front or back of the deque?(Enter 1 or 2)"<<endl;
+	cin>>fob;
+	if(fob==1){
+	  d.push_front(data);
+	}
+	if(fob==2){
+	  d.push_back(data);
+	}
+	cout<<"Would you like to enter more? y or n"<<endl;
+	cin>>con;
+      }
+    }
+    if(choice==2){
+      cout<<"How many integers do you want entered?"<<endl
+	  <<"DATA WILL START AT 0 AND STOP AT HOW MANY YOU WANT ENTERED. ALL DATA WILL BE PUT AT FRONT"<<endl;
+      cin>>otto;
+      d.autoenter(otto);
+    }
+    if(choice==3){
+      d.pop_front();
+    }
+    if(choice==4){
+      d.pop_front();
+    }
+    if(choice==5){
+      bool tmp=d.empty();
+      if(tmp==1){
+	cout<<"Deque is empty"<<endl;
+      }
+      if(tmp==0){
+	cout<<"Deque is not empty"<<endl;
+      }
+    }
+    if(choice==6){
+      cout<<"Deque size is "<<d.size()<<endl;
+    }
+    if(choice==7){
+      cout<<"Front element is "<<d.front()<<endl;
+    }
+    if(choice==8){
+      cout<<"Back element is "<<d.back()<<endl;
+    }
+  }
   return 0;
+}
+
+
+int UIMenu(){
+  int choice;
+  cout<<"Hello! Which of the following would you like to do?"<<endl
+      <<"0.Exit Program"<<endl
+      <<"1.Enter data manually"<<endl
+      <<"2.Have data entered automatically"<<endl
+      <<"3.Remove data at front"<<endl
+      <<"4.Remove data from back"<<endl
+      <<"5.Check if deque is empty"<<endl
+      <<"6.Check size of deque"<<endl;
+  cout<<"7.Find front data"<<endl;
+  cout<<"8.Find back data"<<endl;
+  //<<"7.Print deque"<<endl;
+  
+  cin>>choice;
+  return choice;
 }

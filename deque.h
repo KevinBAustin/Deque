@@ -31,6 +31,6 @@ class deque{
   bool empty();
   int size();
   int& operator[](unsigned int index);
-  
+  void autoenter(int num);
 };
 #endif
